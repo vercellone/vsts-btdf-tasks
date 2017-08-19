@@ -12,7 +12,7 @@ before_build:
   - ps: .\SyncCommon.ps1
 
 build_script:
-  tfx extension publish --manifest-globs vss-extension.json --auth-type 'pat' --token %VSTS_PAT% --overrides {"version":"%APPVEYOR_BUILD_NUMBER%"}
+  tfx extension publish --manifest-globs vss-extension.json --auth-type 'pat' --token %VSTS_PAT% --overrides {"version":"{version}"}
 
 artifacts:
   - path: ./*.vsix
