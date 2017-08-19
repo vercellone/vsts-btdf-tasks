@@ -1,0 +1,107 @@
+{
+    "manifestVersion": 1,
+    "id": "btdf-tasks",
+    "name": "Deployment Framework for BizTalk",
+    "version": "0.0.22",
+    "publisher": "vercellj",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],    
+    "description": "Tools for BizTalk ALM.",
+    "categories": [
+        "Build and release"
+    ],
+    "tags": [
+        "BizTalk",
+        "BTDF",
+        "tasks"
+    ],
+    "icons": {
+        "default": "extension-icon.png"        
+    },
+    "links": {
+        "getstarted": {
+            "uri": "https://github.com/vercellone"
+        }
+	},
+    "content": {
+        "details": {
+            "path": "overview.md"
+        }
+    },
+    "galleryFlags": [
+        "Public",
+        "Preview"
+    ],
+    "files": [
+        {
+            "path": "BizTalkTerminateSuspended"
+        },
+        {
+            "path": "BTDFDeploy"
+        },
+        {
+            "path": "BTDFUndeploy"
+        },
+        {
+            "path": "MSIInstall"
+        },
+        {
+            "path": "MSIUninstall"
+        }
+    ],
+    "contributions": [
+        {
+            "id": "BizTalkTerminateSuspended",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "BizTalkTerminateSuspended"
+            }
+        },
+        {
+            "id": "BTDFDeploy",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "BTDFDeploy"
+            }
+        },
+        {
+            "id": "BTDFUndeploy",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "BTDFUndeploy"
+            }
+        },
+        {
+            "id": "MSIInstall",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "MSIInstall"
+            }
+        },
+        {
+            "id": "MSIUninstall",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "MSIUninstall"
+            }
+        }
+    ]
+}
