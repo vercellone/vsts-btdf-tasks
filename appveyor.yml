@@ -12,14 +12,10 @@ before_build:
   - ps: .\SyncCommon.ps1
 
 build_script:
-  tfx extension create --manifest-globs vss-extension.json --rev-version
+  tfx extension publish --manifest-globs vss-extension.json --auth-type 'pat' --token '%VSTS_PAT%'' --overrides {"version":"%APPVEYOR_BUILD_NUMBER%"}"
 
 artifacts:
   - path: ./*.vsix
     name: vsts-btdf-tasks
 
 version: 0.0.{build}
-
-#deploy_script:
-  # Publish extension to the Visual Studio Marketplace
-  #tfx extension publish --vsix --auth-type 'pat' --token %VSTS_PAT%
