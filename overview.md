@@ -38,7 +38,7 @@ The BTDF Deploy/Undeploy tasks require artifacts built using the [Deployment Fra
    1. MSI Install
    1. BTDF Deploy
 
-   ### For BizTalk applications referenced by other BizTalk applications.  (i.e. projects B and C both reference project A)
+### For BizTalk applications referenced by other BizTalk applications.  (i.e. projects B and C both reference project A)
 
    1. Terminate Suspended
        * Save messages checked for production, unchecked for non-production.
