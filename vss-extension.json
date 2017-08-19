@@ -9,7 +9,7 @@
             "id": "Microsoft.VisualStudio.Services"
         }
     ],    
-    "description": "Tools for BizTalk ALM.",
+    "description": "Deployment Framework for BizTalk VSTS release tasks.",
     "categories": [
         "Build and release"
     ],
