@@ -1,0 +1,25 @@
+environment:
+  # Set your VSTS Personal Access Token to facilitate publishing
+  # Don't store it in the clear, encrypt it: https://ci.appveyor.com/tools/encrypt
+  VSTS_PAT:
+    secure: +FWf4qAS2qIC1EK+ZKJK85fa9MpyGKEG7e9qGpXUT7Oc/U8iSCgXiGVUKzuq7SgKYJXQCAwgMPnpE/FvIXBu2g==
+
+install:
+  # Install the TFX Command Line Interface
+  npm i -g tfx-cli
+
+before_build:
+  - ps: .\SyncCommon.ps1
+
+build_script:
+  tfx extension create --manifest-globs vss-extension.json --rev-version
+
+artifacts:
+  - path: ./*.vsix
+    name: vsts-btdf-tasks
+
+version: 0.0.{build}
+
+#deploy_script:
+  # Publish extension to the Visual Studio Marketplace
+  #tfx extension publish --vsix --auth-type 'pat' --token %VSTS_PAT%
