@@ -23,7 +23,7 @@ if (-not [Guid]::TryParse($Product, [ref] $InstallGuid)) {
 
 $msiexec = 'msiexec.exe'
 $args = [string[]]@(
-    "/x$InstallGuid"
+    "/x $InstallGuid"
     "/qn"
 )
 if (-not [string]::IsNullOrWhiteSpace($Arguments)) {
