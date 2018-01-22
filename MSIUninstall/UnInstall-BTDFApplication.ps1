@@ -8,15 +8,14 @@
 . "$PSScriptRoot\Init-BTDFTasks.ps1"
 . "$PSScriptRoot\Get-MSIFileInformation.ps1"
 
+$InstallGuid = [Guid]::Empty
+
 if (-not [Guid]::TryParse($Product, [ref] $InstallGuid)) {
     if (Test-Path -Path "$Product" -ErrorAction SilentlyContinue) {
         $MSI = Get-Item -Path "$Product" -ErrorAction Stop
         $FoundMSIGuid = Get-MSIFileInformation -Path "$MSI" -Property "ProductCode"
         if (-not [Guid]::TryParse($FoundMSIGuid, [ref] $InstallGuid)) {
             $Name = [Regex]::Match($MSI.BaseName,'^(\.?[a-zA-Z]+)*').Value
-        }
-        else {
-            $InstallGuid = $FoundMSIGuid
         }
     } else {
         $Name = "$Product"
@@ -29,13 +28,10 @@ if (-not [Guid]::TryParse($Product, [ref] $InstallGuid)) {
         }
     }
 }
-else {
-    $InstallGuid = $InstallGuid.ToString("B")
-}
 
 $msiexec = 'msiexec.exe'
 $args = [string[]]@(
-    "/x $InstallGuid"
+    "/x {0:B}"  -f $InstallGuid
     "/qn"
 )
 if (-not [string]::IsNullOrWhiteSpace($Arguments)) {
