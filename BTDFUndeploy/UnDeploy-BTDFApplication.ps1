@@ -49,10 +49,15 @@ if (Test-BTDFApplicationDeployed -Name $Name) {
         Write-Host $cmd
         $exitCode = (Start-Process -FilePath "$BTDFMSBuild" -ArgumentList $arguments -Wait -PassThru).ExitCode
         Write-Host (Get-Content -Path $DeployResults | Out-String)
+
         if($exitCode -ne 0) {
             Write-Host "##vso[task.logissue type=error;] Error while calling MSBuild, Exit Code: $exitCode"
+            Write-Host ("##vso[task.complete result=Failed;] Deploy-BTDFApplication error while calling MSBuild, Exit Code: {0}" -f $exitCode)
+        } else {
+            Write-Host "##vso[task.complete result=Succeeded;]DONE"
         }
     }
 } else {
     Write-Host ("##vso[task.logissue type=warning;] BTDF application '{0}' not in catalog.  Undeploy skipped." -f $Name)
+    Write-Host ("##vso[task.complete result=Failed;] BTDF application '{0}' not in catalog.  Undeploy skipped." -f $Name)
 }

@@ -48,7 +48,11 @@ if (Test-Path -Path $ApplicationPath -ErrorAction SilentlyContinue) {
     Write-Host (Get-Content -Path $DeployResults | Out-String)
     if($exitCode -ne 0) {
         Write-Host ("##vso[task.logissue type=error;] Deploy-BTDFApplication error while calling MSBuild, Exit Code: {0}" -f $exitCode)
+        Write-Host ("##vso[task.complete result=Failed;] Deploy-BTDFApplication error while calling MSBuild, Exit Code: {0}" -f $exitCode)
+    } else {
+        Write-Host "##vso[task.complete result=Succeeded;]DONE"
     }
 } else {
     Write-Host ("##vso[task.logissue type=error;] BTDF application '{0}' not found at {1}.  Deploy skipped." -f $Name,$ApplicationPath)
+    Write-Host ("##vso[task.complete result=Failed;] BTDF application '{0}' not found at {1}.  Deploy skipped." -f $Name,$ApplicationPath)
 }
