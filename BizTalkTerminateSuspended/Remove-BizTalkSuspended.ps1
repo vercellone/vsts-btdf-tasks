@@ -24,7 +24,7 @@ param (
 # 16 Completed with discarded messages
 # 32 Suspended (not resumable)
 # 64 In breakpoint
-$ServiceInstances = Get-WmiObject MSBTS_ServiceInstance -Namespace 'root\MicrosoftBizTalkServer' -Filter '(ServiceClass=1 or ServiceClass=4) and (ServiceStatus = 4 or ServiceStatus = 32)'
+$ServiceInstances = Get-WmiObject MSBTS_ServiceInstance -Namespace 'root\MicrosoftBizTalkServer' -Filter '(ServiceClass=1 or ServiceClass=4 or ServiceClass=64) and (ServiceStatus = 4 or ServiceStatus = 32)'
 if ($ServiceInstances) {
     if ($([bool]::Parse($SaveMessages))) {
         if ([string]::IsNullOrWhiteSpace($Destination)) {
