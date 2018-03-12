@@ -59,5 +59,4 @@ if (Test-BTDFApplicationDeployed -Name $Name) {
     }
 } else {
     Write-Host ("##vso[task.logissue type=warning;] BTDF application '{0}' not in catalog.  Undeploy skipped." -f $Name)
-    Write-Host ("##vso[task.complete result=Failed;] BTDF application '{0}' not in catalog.  Undeploy skipped." -f $Name)
 }
