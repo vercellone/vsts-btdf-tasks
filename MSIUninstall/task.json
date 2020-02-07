@@ -1,5 +1,5 @@
 {
-  "id": "9E47EF94-5477-4196-8646-A336110585C9",
+  "id": "cd4cb834-3b8b-48d1-b46d-21a97da1774e",
   "name": "MSIUninstall",
   "friendlyName": "MSI Uninstall",
   "description": "Uninstall an MSI using the command msiexec.exe /x[InstallGuid]",
@@ -13,7 +13,7 @@
   "version": {
     "Major": "0",
     "Minor": "0",
-    "Patch": "6"
+    "Patch": "7"
   },
   "minimumAgentVersion": "1.95.0",
   "instanceNameFormat": "Uninstall: $(Product)",

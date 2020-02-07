@@ -2,8 +2,8 @@
     "manifestVersion": 1,
     "id": "btdf-tasks",
     "name": "Deployment Framework for BizTalk",
-    "version": "0.1.1",
-    "publisher": "twinpiloot",
+    "version": "0.1.0",
+    "publisher": "vercellj",
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"

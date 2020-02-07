@@ -1,5 +1,5 @@
 {
-  "id": "357412B0-8557-4D0F-A800-8B64C42EDDE0",
+  "id": "cc49f507-f95f-4385-8d25-6df0402be452",
   "name": "BizTalkTerminateSuspended",
   "friendlyName": "Terminate Suspended",
   "description": "Terminates suspended service instances and optionally saves the relevant messages and metadata",

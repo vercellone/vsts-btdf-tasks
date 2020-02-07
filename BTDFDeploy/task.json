@@ -1,5 +1,5 @@
 {
-	"id": "3D578F26-6823-4769-B3EF-D79875E5CBD6",
+	"id": "cce8979f-88a6-4ff2-8742-23dac3c088b4",
 	"name": "BTDFDeploy",
 	"friendlyName": "BTDF - Deploy",
 	"description": "Deployment Framework for BizTalk btdfproj project target: Deploy",
@@ -13,7 +13,7 @@
 	"version": {
 		"Major": "1",
 		"Minor": "0",
-		"Patch": "2"
+		"Patch": "0"
 	},
 	"minimumAgentVersion": "1.95.0",
 	"instanceNameFormat": "Deploy: $(Name)",

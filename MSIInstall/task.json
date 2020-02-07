@@ -1,5 +1,5 @@
 {
-  "id": "C414FFEA-B1D1-4842-BD83-4729AE7EA1AE",
+  "id": "5f085399-5bf7-44e2-9539-6b1125e4aa2f",
   "name": "MSIInstall",
   "friendlyName": "MSI Install",
   "description": "Install an MSI using the command msiexec.exe /i [msi file]",
