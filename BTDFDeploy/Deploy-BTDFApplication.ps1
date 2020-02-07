@@ -2,10 +2,13 @@
 param(
     [Parameter(Mandatory=$true,ParameterSetName='Name',HelpMessage="Msi file must exist")]
     [string]$Name,
+
     [Parameter(Mandatory=$false,HelpMessage="Leave blank to skip EnvironmentSettings export.")]
     [string]$Environment,
+
     [Parameter(Mandatory=$false,HelpMessage="Location where BTDF packages are installed.")]
 	[string]$InstallDir,
+
     [string]$BTDeployMgmtDB='true',
     [string]$SkipUndeploy='true'
 )
