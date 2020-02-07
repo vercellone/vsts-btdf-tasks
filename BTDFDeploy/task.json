@@ -13,7 +13,7 @@
   "version": {
     "Major": "0",
     "Minor": "0",
-    "Patch": "4"
+    "Patch": "5"
   },
   "minimumAgentVersion": "1.95.0",
   "instanceNameFormat": "Deploy: $(Name)",
@@ -31,12 +31,20 @@
       "type": "string",
       "label": "Environment",
       "defaultValue": "",
-      "required": true,
+      "required": false,
       "helpMarkDown": "The BTDF environment name, used as a prefix to the settings file name (i.e. '{0}_settings.xml')"
     },
     {
+      "name": "InstallDir",
+      "type": "string",
+      "label": "InstallDir",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "Location where BTDF packages are installed"
+    },
+    {
       "name": "BTDeployMgmtDB",
-      "type": "boolean",
+      "type": "string",
       "label": "Deploy Mgmt DB",
       "defaultValue": "true",
       "helpMarkDown": "Boolean DeployBizTalkMgmtDB MSBuild property setting used when building the BTDF project (*.btdfproj)."
