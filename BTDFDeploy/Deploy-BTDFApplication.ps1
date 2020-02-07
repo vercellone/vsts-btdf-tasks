@@ -16,6 +16,8 @@ if (-Not $InstallDir) {
 }
 
 $ApplicationPath = Join-Path $InstallDir $Name
+Write-Host "Name: $Name, Environment: $Environment, InstallDir: $InstallDir, BTDeployMgmtDB: $BTDeployMgmtDB" 
+
 if (Test-Path -Path $ApplicationPath -ErrorAction SilentlyContinue) {
 	if ($Environment)
 	{

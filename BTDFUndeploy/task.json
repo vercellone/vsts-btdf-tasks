@@ -1,5 +1,5 @@
 {
-  "id": "f5504365-d837-4efa-bcf4-fef6ec064501",
+  "id": "6BB2FA4C-4163-41CB-8E84-9FC4D1E0A2D0",
   "name": "BTDFUndeploy",
   "friendlyName": "BTDF - Undeploy",
   "description": "Deployment Framework for BizTalk btdfproj project target: Undeploy",
@@ -11,9 +11,9 @@
   ],
   "demands": [],
   "version": {
-    "Major": "0",
+    "Major": "1",
     "Minor": "0",
-    "Patch": "6"
+    "Patch": "3"
   },
   "minimumAgentVersion": "1.95.0",
   "instanceNameFormat": "UnDeploy: $(Name)",
@@ -28,18 +28,25 @@
     },
     {
       "name": "InstallDir",
-      "type": "string",
+      "type": "filePath",
       "label": "InstallDir",
       "defaultValue": "",
       "required": false,
       "helpMarkDown": "Location where BTDF packages are installed"
     },
     {
-      "name": "BTDeployMgmtDB",
-      "type": "string",
-      "label": "Deploy Mgmt DB",
-      "defaultValue": "true",
-      "helpMarkDown": "Boolean DeployBizTalkMgmtDB MSBuild property setting used when building the BTDF project (*.btdfproj)."
+			"name": "BTDeployMgmtDB",
+			"type": "pickList",
+			"label": "Deploy Mgmt DB",
+			"defaultValue": "true",
+			"helpMarkDown": "Boolean DeployBizTalkMgmtDB MSBuild property setting used when building the BTDF project (*.btdfproj).",
+			"properties": {
+                "EditableOptions": "True"
+            },
+			"options": {
+				"true": "True",
+				"false": "False"
+			}
     }
   ],
   "execution": {

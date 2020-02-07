@@ -36,6 +36,8 @@ if (-Not $InstallDir) {
 }
 
 $ApplicationPath = Join-Path $InstallDir $Name
+Write-Host "Name: $Name, InstallDir: $InstallDir, BTDeployMgmtDB: $BTDeployMgmtDB" 
+
 
 ## On the server whe MgmtDB must be undeployed, check if the application is installed. On the other servers, test if the path exists.
 if ($BTDeployMgmtDB -eq "true" -And -Not(Test-BTDFApplicationDeployed -Name $Name))
@@ -45,8 +47,6 @@ if ($BTDeployMgmtDB -eq "true" -And -Not(Test-BTDFApplicationDeployed -Name $Nam
 else
 {
 	if (Test-Path -Path $ApplicationPath -ErrorAction SilentlyContinue) {
-		$ApplicationPath = Join-Path $ProgramFiles $Name
-
 		$BTDFProject = Get-ChildItem -Path $ApplicationPath -Filter '*.btdfproj' -Recurse | Select-Object -ExpandProperty FullName -First 1
 		$DeployResults = Get-ChildItem -Path $ApplicationPath -Filter 'DeployResults' -Recurse | Select-Object -ExpandProperty FullName -First 1
 		if ($null -eq $DeployResults) {
@@ -75,7 +75,6 @@ else
 			}
 		}
 	} else {
-		Write-Host ("##vso[task.logissue type=error;] BTDF application '{0}' not found at {1}.  Undeploy skipped." -f $Name,$ApplicationPath)
-		Write-Host ("##vso[task.complete result=Failed;] BTDF application '{0}' not found at {1}.  Undeploy skipped." -f $Name,$ApplicationPath)
+		Write-Host ("##vso[task.logissue type=warning;] BTDF application '{0}' not found at {1}.  Undeploy skipped." -f $Name,$ApplicationPath)
 	}
 }

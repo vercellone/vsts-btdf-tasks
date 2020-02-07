@@ -2,8 +2,8 @@
     "manifestVersion": 1,
     "id": "btdf-tasks",
     "name": "Deployment Framework for BizTalk",
-    "version": "0.0.22",
-    "publisher": "vercellj",
+    "version": "0.1.1",
+    "publisher": "twinpiloot",
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"
@@ -11,7 +11,7 @@
     ],    
     "description": "Deployment Framework for BizTalk VSTS release tasks.",
     "categories": [
-        "Build and release"
+        "Azure Pipelines"
     ],
     "tags": [
         "BizTalk",
