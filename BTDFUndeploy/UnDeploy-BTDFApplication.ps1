@@ -21,7 +21,8 @@ function Test-BTDFApplicationDeployed {
         #=== Connect the BizTalk Management database ===#
         $Catalog = New-Object Microsoft.BizTalk.ExplorerOM.BtsCatalogExplorer
         $MgmtDBServer = Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\BizTalk Server\3.0\Administration' | Select-Object -ExpandProperty 'MgmtDBServer'
-        $Catalog.ConnectionString = "SERVER=$MgmtDBServer;DATABASE=BizTalkMgmtDb;Integrated Security=SSPI"
+        $MgmtDBName = Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\BizTalk Server\3.0\Administration' | Select-Object -ExpandProperty 'MgmtDBName'
+        $Catalog.ConnectionString = "SERVER=$MgmtDBServer;DATABASE=$MgmtDBName;Integrated Security=SSPI"
     }
     process {
         #=== Loop through applications in the catalog trying to find a name match ===#
