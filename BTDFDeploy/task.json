@@ -35,6 +35,14 @@
       "helpMarkDown": "The BTDF environment name, used as a prefix to the settings file name (i.e. '{0}_settings.xml')"
     },
     {
+      "name": "Destination",
+      "type": "filePath",
+      "label": "Destination",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "Path to the directory where the product is installed (optional; default is a subfolder by the same name as the product in `$env:ProgramFiles or `$env:ProgramFiles(x86))."
+    },
+    {
       "name": "BTDeployMgmtDB",
       "type": "boolean",
       "label": "Deploy Mgmt DB",

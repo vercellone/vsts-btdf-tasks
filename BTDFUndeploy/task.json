@@ -27,12 +27,12 @@
       "helpMarkDown": "BizTalk application name."
     },
     {
-      "name": "InstallDir",
+      "name": "Destination",
       "type": "filePath",
-      "label": "InstallDir",
+      "label": "Destination",
       "defaultValue": "",
       "required": false,
-      "helpMarkDown": "Location where BTDF packages are installed"
+      "helpMarkDown": "Path to the directory where the product is installed (optional; default is a subfolder by the same name as the product in `$env:ProgramFiles or `$env:ProgramFiles(x86))."
     },
     {
 			"name": "BTDeployMgmtDB",

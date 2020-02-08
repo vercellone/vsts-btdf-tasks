@@ -50,6 +50,22 @@ The BTDF Deploy/Undeploy tasks require artifacts built using the [Deployment Fra
    1. BTDF Deploy A
    1. BTDF Deploy B
    1. BTDF Deploy C
+
+## Multi-Server Deployments
+
+A typical scenario for using these tasks is to define a single task group with
+Undeploy, Uninstall, Install and Deploy tasks.
+
+![](taskgroup.png)
+
+Then use this task group in the deployment stages. If you want to use a single
+task group, you must use separate stages for MgmtDB and Non-MgmtDB deployments,
+because the variable DeployMgmtDB cannot have different values within a single
+stage. The alternative is to use separate task groups for Non-MgmtDB and MgmtDB
+deployments.
+
+![](stages.png)
+
  
 ## See Also
 * [Deployment Framework for BizTalk Visual Studio extensions](https://marketplace.visualstudio.com/items?itemName=DeployFxForBizTalkTeam.DeploymentFrameworkforBizTalk)

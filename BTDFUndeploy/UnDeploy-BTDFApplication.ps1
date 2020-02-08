@@ -3,8 +3,8 @@ param(
 	[Parameter(Mandatory)]
 	[string]$Name,
 	
-    [Parameter(Mandatory=$false,HelpMessage="Location where BTDF packages are installed.")]
-	[string]$InstallDir,
+    [Parameter(Mandatory=$false,HelpMessage="Path to the directory where the product is installed (optional; default is a subfolder by the same name as the product in `$env:ProgramFiles or `$env:ProgramFiles(x86)).")]
+	[string]$Destination,
 
 	[string]$BTDeployMgmtDB=$true
 )
@@ -31,12 +31,12 @@ function Test-BTDFApplicationDeployed {
     }
 }
 
-if (-Not $InstallDir) {
-	$InstallDir = $ProgramFiles
+if (-Not $Destination) {
+	$Destination = $ProgramFiles
 }
 
-$ApplicationPath = Join-Path $InstallDir $Name
-Write-Host "Name: $Name, InstallDir: $InstallDir, BTDeployMgmtDB: $BTDeployMgmtDB" 
+$ApplicationPath = Join-Path $Destination $Name
+Write-Host "Name: $Name, Destination: $Destination, BTDeployMgmtDB: $BTDeployMgmtDB" 
 
 
 ## On the server whe MgmtDB must be undeployed, check if the application is installed. On the other servers, test if the path exists.

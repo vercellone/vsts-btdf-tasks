@@ -6,20 +6,20 @@ param(
     [Parameter(Mandatory=$false,HelpMessage="Leave blank to skip EnvironmentSettings export.")]
     [string]$Environment,
 
-    [Parameter(Mandatory=$false,HelpMessage="Location where BTDF packages are installed.")]
-	[string]$InstallDir,
+    [Parameter(Mandatory=$false,HelpMessage="Path to the directory where the product is installed (optional; default is a subfolder by the same name as the product in `$env:ProgramFiles or `$env:ProgramFiles(x86)).")]
+	[string]$Destination,
 
     [string]$BTDeployMgmtDB='true',
     [string]$SkipUndeploy='true'
 )
 . "$PSScriptRoot\Init-BTDFTasks.ps1"
 
-if (-Not $InstallDir) {
-	$InstallDir = $ProgramFiles
+if (-Not $Destination) {
+	$Destination = $ProgramFiles
 }
 
-$ApplicationPath = Join-Path $InstallDir $Name
-Write-Host "Name: $Name, Environment: $Environment, InstallDir: $InstallDir, BTDeployMgmtDB: $BTDeployMgmtDB" 
+$ApplicationPath = Join-Path $Destination $Name
+Write-Host "Name: $Name, Environment: $Environment, Destination: $Destination, BTDeployMgmtDB: $BTDeployMgmtDB" 
 
 if (Test-Path -Path $ApplicationPath -ErrorAction SilentlyContinue) {
 	if ($Environment)
