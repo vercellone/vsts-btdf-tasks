@@ -2,7 +2,7 @@ environment:
   # Set your VSTS Personal Access Token to facilitate publishing
   # Don't store it in the clear, encrypt it: https://ci.appveyor.com/tools/encrypt
   VSTS_PAT:
-    secure: iqUYqYl3XnwCRgz/d73lDL3g2xZCrq9HK3Rzspz7BLqQPcJ80opbDm0PrHQTt8nDfLP1wpQNaQxrmobRb3SD+Q==
+    secure: H/UHOP7KVeCcaTkvMe7cp9pn8RlCdvQUOUajO0urYVaL8rr2VbLA+/oJTd+0nRvngg5ZJxwexPLdAKc2oxaxtQ==
 
 install:
   # Install the TFX Command Line Interface
