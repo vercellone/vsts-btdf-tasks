@@ -3,30 +3,42 @@ param(
     [Parameter(Mandatory=$true,ParameterSetName='Name',HelpMessage="Msi file must exist")]
     [string]$Name,
 
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory=$false,HelpMessage="Leave blank to skip EnvironmentSettings export.")]
     [string]$Environment,
+
+    [Parameter(Mandatory=$false,HelpMessage="Path to the directory where the product is installed (optional; default is a subfolder by the same name as the product in `$env:ProgramFiles or `$env:ProgramFiles(x86)).")]
+	[string]$Destination,
 
     [string]$BTDeployMgmtDB='true',
     [string]$SkipUndeploy='true'
 )
 . "$PSScriptRoot\Init-BTDFTasks.ps1"
 
-$ApplicationPath = Join-Path $ProgramFiles $Name
+if (-Not $Destination) {
+	$Destination = $ProgramFiles
+}
+
+$ApplicationPath = Join-Path $Destination $Name
+Write-Host "Name: $Name, Environment: $Environment, Destination: $Destination, BTDeployMgmtDB: $BTDeployMgmtDB" 
+
 if (Test-Path -Path $ApplicationPath -ErrorAction SilentlyContinue) {
-    $EnvironmentSettingsPath = Get-ChildItem -Path $ApplicationPath -Recurse -Filter 'EnvironmentSettings' | Select-Object -ExpandProperty FullName -First 1
-    $EnvironmentSettings = Join-Path $EnvironmentSettingsPath ('{0}_settings.xml' -f $Environment)
-    if (!(Test-Path -Path $EnvironmentSettings)) {
-        $DeploymentToolsPath = Get-ChildItem -Path $ApplicationPath -Recurse -Filter 'DeployTools' | Select-Object -ExpandProperty FullName -First 1
-        $esxargs = [string[]]@(
-            "`"$EnvironmentSettingsPath\\SettingsFileGenerator.xml`""
-            "`"$EnvironmentSettingsPath`""
-        )
-        $exitCode = (Start-Process -FilePath "`"$DeploymentToolsPath\EnvironmentSettingsExporter.exe`"" -ArgumentList $esxargs -Wait -PassThru).ExitCode
-        if($exitCode -ne 0) {
-            Write-Host "##vso[task.logissue type=error;] Deploy-BTDFApplication Error while calling EnvironmentSettingsExporter, Exit Code: $exitCode"
-        }
-    }
-    Get-Item -Path $EnvironmentSettings -ErrorAction Stop | Out-Null
+	if ($Environment)
+	{
+		$EnvironmentSettingsPath = Get-ChildItem -Path $ApplicationPath -Recurse -Filter 'EnvironmentSettings' | Select-Object -ExpandProperty FullName -First 1
+		$EnvironmentSettings = Join-Path $EnvironmentSettingsPath ('{0}_settings.xml' -f $Environment)
+		if (!(Test-Path -Path $EnvironmentSettings)) {
+			$DeploymentToolsPath = Get-ChildItem -Path $ApplicationPath -Recurse -Filter 'DeployTools' | Select-Object -ExpandProperty FullName -First 1
+			$esxargs = [string[]]@(
+				"`"$EnvironmentSettingsPath\\SettingsFileGenerator.xml`""
+				"`"$EnvironmentSettingsPath`""
+			)
+			$exitCode = (Start-Process -FilePath "`"$DeploymentToolsPath\EnvironmentSettingsExporter.exe`"" -ArgumentList $esxargs -Wait -PassThru).ExitCode
+			if($exitCode -ne 0) {
+				Write-Host "##vso[task.logissue type=error;] Deploy-BTDFApplication Error while calling EnvironmentSettingsExporter, Exit Code: $exitCode"
+			}
+		}
+		Get-Item -Path $EnvironmentSettings -ErrorAction Stop | Out-Null
+	}
 
     $BTDFMSBuild = Get-MSBuildPath
     $BTDFProject = Get-ChildItem -Path $ApplicationPath -Filter '*.btdfproj' -Recurse | Select-Object -ExpandProperty FullName -First 1

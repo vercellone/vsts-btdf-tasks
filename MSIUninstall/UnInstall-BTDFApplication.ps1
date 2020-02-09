@@ -24,7 +24,7 @@ if (-not [Guid]::TryParse($Product, [ref] $InstallGuid)) {
     if([Guid]::Empty -eq $InstallGuid) {
         $InstallGuid = Get-ChildItem $UninstallPath | Where-Object { ( $_ | Get-ItemProperty -Name DisplayName -ErrorAction SilentlyContinue).DisplayName -eq "$Name" } | Select-Object -ExpandProperty PSChildName
         if ($null -eq $InstallGuid) {
-            Write-Host ("##vso[task.logissue type=error;] Product not found [{0}]" -f $Name)
+            Write-Host ("##vso[task.logissue type=warning;] Product not found [{0}]" -f $Name)
         }
     }
 }
