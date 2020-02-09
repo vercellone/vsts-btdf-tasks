@@ -21,7 +21,7 @@
 
   # create or publish VSIX, depending on whether this is a pull request
   build_script:
-    IF \"%APPVEYOR_PULL_REQUEST_NUMBER%\"=\"\" (
+    IF "%APPVEYOR_PULL_REQUEST_NUMBER%"=="" (
       tfx extension publish --manifest-globs vss-extension.json --auth-type 'pat' --token %VSTS_PAT% --override "{\"version\":\"%APPVEYOR_BUILD_VERSION%\"}"
     ) ELSE (
       tfx extension create --manifest-globs vss-extension.json --override "{\"version\":\"%APPVEYOR_BUILD_VERSION%\"}"
