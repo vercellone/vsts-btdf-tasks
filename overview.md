@@ -56,15 +56,14 @@ The BTDF Deploy/Undeploy tasks require artifacts built using the [Deployment Fra
 A typical scenario for using these tasks is to define a single task group with
 Undeploy, Uninstall, Install and Deploy tasks.
 
-![](taskgroup.png)
+![](https://github.com/vercellone/vsts-btdf-tasks/blob/master/taskgroup.png?raw=true)
 
-Then use this task group in the deployment stages. If you want to use a single
-task group, you must use separate stages for MgmtDB and Non-MgmtDB deployments,
-because the variable DeployMgmtDB cannot have different values within a single
-stage. The alternative is to use separate task groups for Non-MgmtDB and MgmtDB
-deployments.
+Then use this task group in the deployment stages. 
+A typical scenario is to use a deployment group for Non-MgmtDB deployments.
+In the following step you use an agent for the MgmtDB deploy.
 
-![](stages.png)
+![](https://github.com/vercellone/vsts-btdf-tasks/blob/master/ReleasePipeline.png?raw=true)
+
 
  
 ## See Also

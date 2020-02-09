@@ -13,7 +13,7 @@
   "version": {
     "Major": "1",
     "Minor": "0",
-    "Patch": "0"
+    "Patch": "1"
   },
   "minimumAgentVersion": "1.95.0",
   "instanceNameFormat": "Deploy: $(Name)",
@@ -31,8 +31,8 @@
       "type": "string",
       "label": "Environment",
       "defaultValue": "",
-      "required": true,
-      "helpMarkDown": "The BTDF environment name, used as a prefix to the settings file name (i.e. '{0}_settings.xml')"
+      "required": false,
+      "helpMarkDown": "The BTDF environment name, used as a prefix to the settings file name (i.e. '{0}_settings.xml'). Leave blank to skip EnvironmentSettings export."
     },
     {
       "name": "Destination",
@@ -44,10 +44,17 @@
     },
     {
       "name": "BTDeployMgmtDB",
-      "type": "boolean",
+      "type": "pickList",
       "label": "Deploy Mgmt DB",
       "defaultValue": "true",
-      "helpMarkDown": "Boolean DeployBizTalkMgmtDB MSBuild property setting used when building the BTDF project (*.btdfproj)."
+      "helpMarkDown": "Boolean DeployBizTalkMgmtDB MSBuild property setting used when building the BTDF project (*.btdfproj).",
+      "properties": {
+         "EditableOptions": "True"
+      },
+      "options": {
+        "true": "True",
+        "false": "False"
+      }
     },
     {
       "name": "SkipUndeploy",
