@@ -1,6 +1,6 @@
-# Deployment Framework for BizTalk VSTS release tasks
+# Deployment Framework for BizTalk Azure DevOps release tasks
 
-This extension facilitates the release (not build) of BizTalk applications to server(s) with a [private agent](https://www.visualstudio.com/en-us/docs/build/concepts/agents/agents) (deployment group members qualify).  It started as a decomposition of the monolithic [Install-BizTalkApplication](http://biztalkalm.codeplex.com/SourceControl/latest#Prod/BuildScripts/Install-BizTalkApplication.ps1) PowerShell script into more granular tasks for greater flexibility and enhanced feedback within the scope of a vsts release.
+This extension facilitates the deployment (not build) of BizTalk applications to server(s) with a [private agent](https://www.visualstudio.com/en-us/docs/build/concepts/agents/agents) (deployment group members qualify).  It started as a decomposition of the Randy Paulo's monolithic [Install-BizTalkApplication](https://gallery.technet.microsoft.com/Powershell-Script-to-903a99c2) PowerShell script into more granular tasks for greater flexibility and enhanced feedback within the scope of a Azure DevOps pipeline.
 
 The BTDF Deploy/Undeploy tasks require artifacts built using the [Deployment Framework for BizTalk (BTDF)](http://biztalkdeployment.codeplex.com/).  For those unfamiliar, I recommend starting with Thomas F. Abraham's recently published [Deployment Framework for BizTalk Visual Studio extensions](https://marketplace.visualstudio.com/items?itemName=DeployFxForBizTalkTeam.DeploymentFrameworkforBizTalk).
 
@@ -71,5 +71,5 @@ In the following step you use an agent for the MgmtDB deploy.
 * [Deployment Framework for BizTalk (BTDF)](http://biztalkdeployment.codeplex.com/)
 * [Deployment Framework For BizTalk Documentation](http://www.tfabraham.com/blog/deployment-[framework-for-biztalk-documentation/)
 * [Understanding the BizTalk Deployment Framework – Introduction](https://blogs.biztalk360.com/understanding-biztalk-deployment-framework-introduction/)
-* [BizTalk ALM with VSTS](http://biztalkersblog.azurewebsites.net/biztalk-alm-with-visual-studio-online/)
+* [BizTalk ALM with Visual Studio Online](http://biztalkersblog.azurewebsites.net/biztalk-alm-with-visual-studio-online/)
 * [BizTalk Application Deployment using BTDF and PowerShell](https://vikas15bhardwaj.wordpress.com/2015/02/06/biztalk-application-deployment-using-btdf-and-powershell/)
