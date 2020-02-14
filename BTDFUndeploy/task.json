@@ -5,10 +5,7 @@
   "description": "Deployment Framework for BizTalk btdfproj project target: Undeploy",
   "author": "Jason Vercellone",
   "helpMarkDown": "",
-  "category": [
-    "Azure Pipelines",
-    "Deploy"
-  ],
+  "category": "Azure Pipelines",
   "visibility": [
     "Release"
   ],
