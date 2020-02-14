@@ -2,21 +2,21 @@
     "manifestVersion": 1,
     "id": "btdf-tasks",
     "name": "Deployment Framework for BizTalk",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "publisher": "vercellj",
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"
         }
     ],    
-    "description": "Deployment Framework for BizTalk VSTS release tasks.",
+    "description": "Deployment Framework for BizTalk Azure DevOps pipeline tasks.",
     "categories": [
         "Azure Pipelines"
     ],
     "tags": [
         "BizTalk",
         "BTDF",
-		"MSI",
+        "MSI",
         "tasks"
     ],
     "icons": {
@@ -24,7 +24,7 @@
     },
     "links": {
         "getstarted": {
-            "uri": "https://github.com/vercellone"
+            "uri": "https://github.com/vercellone/vsts-btdf-tasks"
         }
 	},
     "content": {
@@ -33,8 +33,7 @@
         }
     },
     "galleryFlags": [
-        "Public",
-        "Preview"
+        "Public"
     ],
     "files": [
         {
