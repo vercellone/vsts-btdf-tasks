@@ -5,10 +5,7 @@
   "description": "Install an MSI using the command msiexec.exe /i [msi file]",
   "author": "Jason Vercellone",
   "helpMarkDown": "",
-  "category": [
-    "Azure Pipelines",
-    "Deploy"
-  ],
+  "category": "Azure Pipelines",
   "visibility": [
     "Release"
   ],

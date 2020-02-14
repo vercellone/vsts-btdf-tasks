@@ -5,10 +5,7 @@
   "description": "Terminates suspended service instances and optionally saves the relevant messages and metadata",
   "author": "Jason Vercellone",
   "helpMarkDown": "",
-  "category": [
-    "Azure Pipelines",
-    "Deploy"
-  ],
+  "category": "Azure Pipelines",
   "visibility": [
     "Release"
   ],
