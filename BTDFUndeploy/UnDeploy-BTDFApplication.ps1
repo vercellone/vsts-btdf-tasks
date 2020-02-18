@@ -32,7 +32,7 @@ function Test-BTDFApplicationDeployed {
     }
 }
 
-if (-Not $Destination) {
+if ([string]::IsNullOrWhiteSpace($Destination)) {
 	$Destination = $ProgramFiles
 }
 
