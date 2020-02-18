@@ -14,7 +14,7 @@ param(
 )
 . "$PSScriptRoot\Init-BTDFTasks.ps1"
 
-if (-Not $Destination) {
+if ([string]::IsNullOrWhiteSpace($Destination)) {
 	$Destination = $ProgramFiles
 }
 
