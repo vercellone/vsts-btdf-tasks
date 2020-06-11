@@ -25,7 +25,11 @@ if (Test-Path -Path $ApplicationPath -ErrorAction SilentlyContinue) {
 	if ($Environment)
 	{
 		$EnvironmentSettingsPath = Get-ChildItem -Path $ApplicationPath -Recurse -Filter 'EnvironmentSettings' | Select-Object -ExpandProperty FullName -First 1
-		$EnvironmentSettings = Join-Path $EnvironmentSettingsPath ('{0}_settings.xml' -f $Environment)
+		$EnvironmentSettings = Join-Path $EnvironmentSettingsPath $Environment
+		if ($Environment -notmatch '\.xml') {
+			# This offers backwards compatibility for existing tasks which are set to the environment name, not the full file name.
+			$EnvironmentSettings = "$($EnvironmentSettings)_settings.xml"
+		}
 		if (!(Test-Path -Path $EnvironmentSettings)) {
 			$DeploymentToolsPath = Get-ChildItem -Path $ApplicationPath -Recurse -Filter 'DeployTools' | Select-Object -ExpandProperty FullName -First 1
 			$esxargs = [string[]]@(

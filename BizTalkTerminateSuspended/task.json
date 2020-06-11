@@ -5,15 +5,15 @@
   "description": "Terminates suspended service instances and optionally saves the relevant messages and metadata",
   "author": "Jason Vercellone",
   "helpMarkDown": "",
-  "category": "Deploy",
+  "category": "Azure Pipelines",
   "visibility": [
     "Release"
   ],
   "demands": [],
   "version": {
-    "Major": "0",
+    "Major": "1",
     "Minor": "0",
-    "Patch": "5"
+    "Patch": "0"
   },
   "minimumAgentVersion": "1.95.0",
   "instanceNameFormat": "Terminate Suspended",

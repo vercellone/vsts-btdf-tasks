@@ -1,19 +1,32 @@
-environment:
-  # Set your VSTS Personal Access Token to facilitate publishing
-  # Don't store it in the clear, encrypt it: https://ci.appveyor.com/tools/encrypt
-  VSTS_PAT:
-    secure: H/UHOP7KVeCcaTkvMe7cp9pn8RlCdvQUOUajO0urYVaL8rr2VbLA+/oJTd+0nRvngg5ZJxwexPLdAKc2oxaxtQ==
+#---------------------------------#
+#   master branch configuration   #
+#---------------------------------#
+-
+  branches:
+    only:
+      - master
 
-install:
-  # Install the TFX Command Line Interface
-  npm i -g tfx-cli
+  environment:
+    # Set your Azure DevOps Personal Access Token to facilitate publishing
+    # Don't store it in the clear, encrypt it: https://ci.appveyor.com/tools/encrypt
+    VSTS_PAT:
+      secure: H/UHOP7KVeCcaTkvMe7cp9pn8RlCdvQUOUajO0urYVaL8rr2VbLA+/oJTd+0nRvngg5ZJxwexPLdAKc2oxaxtQ==
 
-before_build:
-  - ps: .\SyncCommon.ps1
+  install:
+    # Install the TFX Command Line Interface
+    npm i -g tfx-cli
 
-build_script:
-  tfx extension publish --manifest-globs vss-extension.json --auth-type 'pat' --token %VSTS_PAT% --override "{\"version\":\"%APPVEYOR_BUILD_VERSION%\"}"
+  before_build:
+    - ps: .\SyncCommon.ps1
 
-artifacts:
-  - path: ./*.vsix
-    name: vsts-btdf-tasks
+  # create or publish VSIX, depending on whether this is a pull request
+  build_script:
+    IF "%APPVEYOR_PULL_REQUEST_NUMBER%"=="" (
+      tfx extension publish --manifest-globs vss-extension.json --auth-type 'pat' --token %VSTS_PAT% --override "{\"version\":\"%APPVEYOR_BUILD_VERSION%\"}"
+    ) ELSE (
+      tfx extension create --manifest-globs vss-extension.json --override "{\"version\":\"%APPVEYOR_BUILD_VERSION%\"}"
+    )
+
+  artifacts:
+    - path: ./*.vsix
+      name: vsts-btdf-tasks
