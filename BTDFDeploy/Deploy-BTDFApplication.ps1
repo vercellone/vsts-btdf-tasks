@@ -10,7 +10,10 @@ param(
 	[string]$Destination,
 
     [string]$BTDeployMgmtDB='true',
-    [string]$SkipUndeploy='true'
+    [string]$SkipUndeploy='true',
+    
+    [Parameter(Mandatory=$false,HelpMessage="Additional parameters that will be passed to msbuild.")]
+    [string]$AdditionalParameters=""
 )
 . "$PSScriptRoot\Init-BTDFTasks.ps1"
 
@@ -55,6 +58,7 @@ if (Test-Path -Path $ApplicationPath -ErrorAction SilentlyContinue) {
         "/p:DeployBizTalkMgmtDB=$BTDeployMgmtDB"
         "/p:ENV_SETTINGS=`"$EnvironmentSettings`""
         "/p:SkipUndeploy=$SkipUndeploy"
+	"$AdditionalParameters"
         '/target:Deploy'
         "`"$BTDFProject`""
     )
