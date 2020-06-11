@@ -6,7 +6,10 @@ param(
     [Parameter(Mandatory=$false,HelpMessage="Path to the directory where the product is installed (optional; default is a subfolder by the same name as the product in `$env:ProgramFiles or `$env:ProgramFiles(x86)).")]
 	[string]$Destination,
 
-	[string]$BTDeployMgmtDB=$true
+	[string]$BTDeployMgmtDB=$true,
+	
+	[Parameter(Mandatory=$false,HelpMessage="Additional parameters that will be passed to msbuild.")]
+	[string]$AdditionalParameters=""
 )
 . "$PSScriptRoot\Init-BTDFTasks.ps1"
 
@@ -60,6 +63,7 @@ else
 				"/l:FileLogger,Microsoft.Build.Engine;logfile=`"$DeployResults`""
 				"/p:Configuration=Server"
 				"/p:DeployBizTalkMgmtDB=$BTDeployMgmtDB"
+				"$AdditionalParameters"
 				'/target:Undeploy'
 				"""$BTDFProject"""
 			)
