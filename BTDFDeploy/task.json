@@ -5,7 +5,7 @@
   "description": "Deployment Framework for BizTalk btdfproj project target: Deploy",
   "author": "Jason Vercellone",
   "helpMarkDown": "",
-  "category": "Deploy",
+  "category": "Azure Pipelines",
   "visibility": [
     "Release"
   ],
@@ -13,7 +13,7 @@
   "version": {
     "Major": "1",
     "Minor": "0",
-    "Patch": "1"
+    "Patch": "2"
   },
   "minimumAgentVersion": "1.95.0",
   "instanceNameFormat": "Deploy: $(Name)",
@@ -32,7 +32,7 @@
       "label": "Environment",
       "defaultValue": "",
       "required": false,
-      "helpMarkDown": "The BTDF environment name, used as a prefix to the settings file name (i.e. '{0}_settings.xml'). Leave blank to skip EnvironmentSettings export."
+      "helpMarkDown": "The environment-specific 'Settings file name:' as shown in your SettingsFileGenerator.xml.  If the .xml extension is excluded, '_settings.xml' will be appended for backwards compatibility.  Leave blank to skip EnvironmentSettings export."
     },
     {
       "name": "Destination",
