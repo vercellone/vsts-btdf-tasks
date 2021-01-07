@@ -1,15 +1,15 @@
 ﻿[cmdletBinding()]
 param(
-	[Parameter(Mandatory)]
+	[Parameter(Mandatory=$true,HelpMessage="The BizTalk Application name")]
 	[string]$Name,
 	
-    [Parameter(Mandatory=$false,HelpMessage="Path to the directory where the product is installed (optional; default is a subfolder by the same name as the product in `$env:ProgramFiles or `$env:ProgramFiles(x86)).")]
-	[string]$Destination,
+    [Parameter(Mandatory=$false,HelpMessage="Path to the directory where the product is installed. Wildcards are allowed. (optional; default is a subfolder by the same name as the product in `$env:ProgramFiles or `$env:ProgramFiles(x86)).")]
+	[string]$ApplicationPath,
 
 	[string]$BTDeployMgmtDB=$true,
 	
-	[Parameter(Mandatory=$false,HelpMessage="Additional parameters that will be passed to msbuild.")]
-	[string]$AdditionalParameters=""
+	[Parameter(Mandatory=$false,HelpMessage="Additional parameters that will be passed to msbuild, for example '/p:SkipHostInstancesRestart=true /p:SkipIISReset=true'")]
+	[string]$AdditionalParameters='/p:AdditionalParameters=None'
 )
 . "$PSScriptRoot\Init-BTDFTasks.ps1"
 
@@ -35,12 +35,11 @@ function Test-BTDFApplicationDeployed {
     }
 }
 
-if (-Not $Destination) {
-	$Destination = $ProgramFiles
+if (-Not $ApplicationPath) {
+	$ApplicationPath = Join-Path $ProgramFiles $Name
 }
 
-$ApplicationPath = Join-Path $Destination $Name
-Write-Host "Name: $Name, Destination: $Destination, BTDeployMgmtDB: $BTDeployMgmtDB" 
+Write-Host "Name: $Name, ApplicationPath: $ApplicationPath, BTDeployMgmtDB: $BTDeployMgmtDB" 
 
 
 ## On the server whe MgmtDB must be undeployed, check if the application is installed. On the other servers, test if the path exists.

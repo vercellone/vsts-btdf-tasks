@@ -1,28 +1,27 @@
-﻿[cmdletBinding()]
+[cmdletBinding()]
 param(
     [Parameter(Mandatory=$true,ParameterSetName='Name',HelpMessage="Msi file must exist")]
     [string]$Name,
 
-    [Parameter(Mandatory=$false,HelpMessage="Leave blank to skip EnvironmentSettings export.")]
+    [Parameter(Mandatory=$false,HelpMessage="Filename of the export settings file. Leave blank to skip EnvironmentSettings export.")]
     [string]$Environment,
 
-    [Parameter(Mandatory=$false,HelpMessage="Path to the directory where the product is installed (optional; default is a subfolder by the same name as the product in `$env:ProgramFiles or `$env:ProgramFiles(x86)).")]
-	[string]$Destination,
+    [Parameter(Mandatory=$false,HelpMessage="Path to the directory where the product is installed. Wildcards are allowed. (optional; default is a subfolder by the same name as the product in `$env:ProgramFiles or `$env:ProgramFiles(x86)).")]
+	[string]$ApplicationPath,
 
     [string]$BTDeployMgmtDB='true',
     [string]$SkipUndeploy='true',
     
     [Parameter(Mandatory=$false,HelpMessage="Additional parameters that will be passed to msbuild.")]
-    [string]$AdditionalParameters=""
+    [string]$AdditionalParameters='/p:AdditionalParameters=None'
 )
 . "$PSScriptRoot\Init-BTDFTasks.ps1"
 
-if (-Not $Destination) {
-	$Destination = $ProgramFiles
+if (-Not $ApplicationPath) {
+	$ApplicationPath = Join-Path $ProgramFiles $Name
 }
 
-$ApplicationPath = Join-Path $Destination $Name
-Write-Host "Name: $Name, Environment: $Environment, Destination: $Destination, BTDeployMgmtDB: $BTDeployMgmtDB" 
+Write-Host "Name: $Name, Environment: $Environment, ApplicationPath: $ApplicationPath, BTDeployMgmtDB: $BTDeployMgmtDB" 
 
 if (Test-Path -Path $ApplicationPath -ErrorAction SilentlyContinue) {
 	if ($Environment)
@@ -58,7 +57,7 @@ if (Test-Path -Path $ApplicationPath -ErrorAction SilentlyContinue) {
         "/p:DeployBizTalkMgmtDB=$BTDeployMgmtDB"
         "/p:ENV_SETTINGS=`"$EnvironmentSettings`""
         "/p:SkipUndeploy=$SkipUndeploy"
-	"$AdditionalParameters"
+	    "$AdditionalParameters"
         '/target:Deploy'
         "`"$BTDFProject`""
     )
