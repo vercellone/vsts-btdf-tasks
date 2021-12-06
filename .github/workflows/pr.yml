@@ -13,7 +13,7 @@ jobs:
         run: |
           $Path = '/home/runner/work/vsts-btdf-tasks/vsts-btdf-tasks'
           Get-ChildItem -Path $Path -Directory -Exclude Common | ForEach-Object {
-              Copy-Item -Path ([IO.Path]::Join($Path,'Common*.*') -Destination $_ -Force -Recurse
+              Copy-Item -Path ([IO.Path]::Join($Path,'Common*.*')) -Destination $_ -Force -Recurse
           }
       - name:
         run: tfx extension create --manifest-globs vss-extension.json --override "{\"version\":\"2.0.0\"}"
