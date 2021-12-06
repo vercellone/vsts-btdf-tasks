@@ -19,8 +19,9 @@ jobs:
         run: tfx extension create --manifest-globs vss-extension.json --override "{\"version\":\"2.0.0\"}"
       - uses: actions/upload-artifact@v2
         with:
-          name: my-artifact
-          path: ./*.vsix
+          name: VSIX
+          path: ./vercellj.btdf-tasks-2.0.0.vsix
+          if-no-files-found: error
       # - name: Publish to Visual Studio Marketplace
       #   uses: HaaLeo/publish-vscode-extension@v0
       #   with:
